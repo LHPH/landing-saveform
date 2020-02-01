@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: landing-saveform-service
+  jackson:
+    default-property-inclusion: NON_NULL
+  datasource:
+    url: jdbc:postgresql://localhost:6000/landings
+    username: mkt
+    password: mkt
+  jpa:
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+
+
+server:
+  servlet:
+    context-path: /mkt/form
+  port: 9000

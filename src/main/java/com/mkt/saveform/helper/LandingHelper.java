@@ -8,12 +8,15 @@ import com.mkt.core.base.BaseHelper;
 import com.mkt.core.entity.Landing;
 import com.mkt.core.model.LandingApplication;
 import com.mkt.core.model.PersonalData;
+import com.mkt.core.util.DateFunctionsUtil;
+import com.mkt.core.util.ObjectFunctionsUtil;
 
 @Component
 public class LandingHelper extends BaseHelper<LandingApplication,Landing>{
 	
 	@Override
 	public Landing toEntity(LandingApplication landing) {
+		
 		Landing entity = new Landing();
 		
 		entity.setFirstName(landing.getPersonalData().getFirstName());
@@ -23,8 +26,8 @@ public class LandingHelper extends BaseHelper<LandingApplication,Landing>{
 		entity.setEmail(landing.getPersonalData().getEmail());
 		entity.setCellPhone(landing.getPersonalData().getCellPhone());
 		entity.setHomePhone(landing.getPersonalData().getHomePhone());
-		entity.setDateCreated(new Date());
-		entity.setDateModified(new Date());
+		entity.setDateCreated(setDate(landing.getDateCreated()));
+		entity.setDateModified(setDate(landing.getDateModified()));
 		
 		return entity;
 	}
@@ -36,8 +39,8 @@ public class LandingHelper extends BaseHelper<LandingApplication,Landing>{
 		landing.setPersonalData(new PersonalData());
 		
 		landing.setFolio(entity.getFolio());
-		landing.setDateCreated(entity.getDateCreated().toString());
-		landing.setDateModified(entity.getDateModified().toString());
+		landing.setDateCreated(DateFunctionsUtil.dateToString(entity.getDateCreated()));
+		landing.setDateModified(DateFunctionsUtil.dateToString(entity.getDateModified()));
 		landing.getPersonalData().setFirstName(entity.getFirstName());
 		landing.getPersonalData().setSecondName(entity.getSecondName());
 		landing.getPersonalData().setLastName(entity.getLastName());
@@ -48,7 +51,28 @@ public class LandingHelper extends BaseHelper<LandingApplication,Landing>{
 		
 		return landing;
 	}
+
+	@Override
+	public void toUpdateEntity(LandingApplication landing, Landing entity) {
+		
+		entity.setFirstName(landing.getPersonalData().getFirstName());
+		entity.setSecondName(landing.getPersonalData().getSecondName());
+		entity.setLastName(landing.getPersonalData().getLastName());
+		entity.setSecondLastName(landing.getPersonalData().getSecondLastName());
+		entity.setEmail(landing.getPersonalData().getEmail());
+		entity.setCellPhone(landing.getPersonalData().getCellPhone());
+		entity.setHomePhone(landing.getPersonalData().getHomePhone());
+		entity.setDateModified(new Date());
+		
+	}
 	
-	
+	private Date setDate(String date) {
+		if(date==null) {
+			return new Date();
+		}
+		else {
+			return DateFunctionsUtil.stringToDate(date);
+		}
+	}
 
 }

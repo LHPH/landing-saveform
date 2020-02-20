@@ -7,7 +7,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.mockito.BDDMockito.given;
-
+import static com.mkt.saveform.constants.Constants.ENDPOINT_LANDING;
+import static com.mkt.saveform.constants.Constants.ENDPOINT_LANDING_FOLIO;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 
@@ -26,24 +27,26 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mkt.core.base.BaseTest;
+import com.mkt.core.config.MessageConfig;
 import com.mkt.core.model.LandingApplication;
 import com.mkt.core.model.Message;
 import com.mkt.core.model.PersonalData;
 import com.mkt.saveform.service.LandingService;
 
-import static com.mkt.saveform.util.Constants.ENDPOINT_LANDING;
-import static com.mkt.saveform.util.Constants.ENDPOINT_LANDING_FOLIO;
-
 @RunWith(SpringRunner.class)
 @WebMvcTest(FormController.class)
 @ActiveProfiles("test")
-public class FormControllerTest {
+public class FormControllerTest extends BaseTest{
 	
 	@Autowired
     private MockMvc mvc; 
 	
 	@MockBean
 	private LandingService landingService;
+	
+	@MockBean
+	private MessageConfig config;
 	
 	public static final String FOLIO="323";
 	private LandingApplication landing;
@@ -128,6 +131,16 @@ public class FormControllerTest {
 		MvcResult result=mvc.perform(delete(ENDPOINT_LANDING_FOLIO,FOLIO)
 				.contentType(MediaType.APPLICATION_JSON))
 				.andDo(print()).andExpect(status().isOk()).andReturn();
+		
+	}
+	
+	@Test
+	public void testSendError() throws Exception{
+		
+		given(config.getMessage(any())).willReturn(new Message());
+		
+		mvc.perform(post(ENDPOINT_LANDING)).andDo(print())
+			.andExpect(status().isInternalServerError()).andReturn();
 		
 	}
 

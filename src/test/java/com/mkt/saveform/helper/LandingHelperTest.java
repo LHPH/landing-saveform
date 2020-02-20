@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.mkt.core.base.BaseTest;
 import com.mkt.core.entity.Landing;
 import com.mkt.core.model.LandingApplication;
 import com.mkt.core.model.PersonalData;
@@ -17,7 +18,7 @@ import com.mkt.core.model.PersonalData;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes= {LandingHelper.class})
 @ActiveProfiles("test")
-public class LandingHelperTest {
+public class LandingHelperTest extends BaseTest{
 
 	@Autowired
 	private LandingHelper landingHelper;
@@ -43,6 +44,7 @@ public class LandingHelperTest {
 		LandingApplication model = new LandingApplication();
 		model.setPersonalData(new PersonalData());
 		model.getPersonalData().setFirstName("NAME");
+		model.setDateModified("10/10/1990");
 		
 		Landing entity=landingHelper.toEntity(model);
 		

@@ -18,6 +18,10 @@ server:
   
 app:
   messages:
+    MKT-000:
+      code: MKT-000
+      type: ERROR
+      description: Ocurrio un error no controlado
     MKT-001:
       code: MKT-001
       type: INFO

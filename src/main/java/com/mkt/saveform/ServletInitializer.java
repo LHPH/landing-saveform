@@ -8,6 +8,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Import;
 
+import com.mkt.core.config.BuildConfig;
 import com.mkt.core.config.LoggerConfig;
 import com.mkt.core.config.MessageConfig;
 import com.mkt.core.config.ValidatorsConfig;
@@ -15,7 +16,7 @@ import com.mkt.core.model.Message;
 
 @SpringBootApplication
 @EntityScan(basePackages= {"com.mkt.core.entity"})
-@Import(value= {MessageConfig.class,ValidatorsConfig.class})
+@Import(value= {MessageConfig.class,ValidatorsConfig.class,BuildConfig.class})
 public class ServletInitializer extends SpringBootServletInitializer {
 	
 	static {

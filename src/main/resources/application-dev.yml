@@ -3,6 +3,7 @@ spring:
     url: jdbc:postgresql://localhost:6000/landings
     username: mkt
     password: mkt
+    hikari:      maximum-pool-size: 5
   jpa:
     properties:
       hibernate:
@@ -14,44 +15,3 @@ server:
   servlet:
     context-path: /mkt/form
   port: 9000
-  
-  
-app:
-  messages:
-    MKT-000:
-      code: MKT-000
-      type: ERROR
-      description: Ocurrio un error no controlado
-    MKT-001:
-      code: MKT-001
-      type: INFO
-      description: Se registro la landing
-    MKT-002:
-      code: MKT-002
-      type: INFO
-      description: No se encontraron landings
-    MKT-003:
-      code: MKT-003
-      type: INFO
-      description: No se encontro la landing especificada
-    MKT-004:
-      code: MKT-004
-      type: INFO
-      description: Se elimino la landing
-    MKT-005:
-      code: MKT-005
-      type: ERROR
-      description: No se pudo guardar la landing
-    MKT-006:
-      code: MKT-006
-      type: ERROR
-      description: No se pudo actualizar o crear la landing
-    MKT-007:
-      code: MKT-007
-      type: ERROR
-      description: No se pudo eliminar la landing
-    MKT-008:
-      code: MKT-008
-      type: WARN
-      description: 
-    

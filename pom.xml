@@ -13,7 +13,7 @@
 	<groupId>com.mkt</groupId>
 	<artifactId>landing-saveform</artifactId>
 	<version>1.0.0</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>landing-saveform</name>
 	<description>Core of proyect</description>
 
@@ -90,7 +90,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
-			<scope>provided</scope>
 		</dependency>
 		
 		<dependency>

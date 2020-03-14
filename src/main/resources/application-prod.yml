@@ -15,4 +15,4 @@ spring:
 server:
   servlet:
     context-path: /mkt/form
-  port: 9000
+  port: $PORT

@@ -1,0 +1,1 @@
+web: java $JAVA_OPTS -Dspring.profiles.active=prod -jar target/landing-saveform-1.0.0.jar
